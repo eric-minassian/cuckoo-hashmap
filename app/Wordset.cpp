@@ -117,6 +117,11 @@ void WordSet::insert(const std::string &s) {
       evictions++;
     }
 
+    // If the eviction threshold is reached, break out of the loop to resize
+    if (evictions >= evictionThreshold) {
+      break;
+    }
+
     // Get the key for the bottom array
     unsigned bottomKey = polynomialHashFunction(temp, BASE_H2, currentCapacity);
 

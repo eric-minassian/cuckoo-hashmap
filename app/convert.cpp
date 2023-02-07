@@ -28,6 +28,16 @@ void loadWordsIntoTable(WordSet &words, std::istream &in) {
 std::vector<std::string> convert(const std::string &s1, const std::string &s2,
                                  const WordSet &words) {
 
+  // If the two words are of different size then there is no path from s1 to s2
+  if (s1.size() != s2.size()) {
+    return {};
+  }
+
+  // If either word is empty then there is no path from s1 to s2
+  if (s1 == "" || s2 == "") {
+    return {};
+  }
+
   // Initialize result vector, queue, and map for finding the path from s1 to s2
   std::vector<std::string> result = {};
   std::queue<std::string> queue;
