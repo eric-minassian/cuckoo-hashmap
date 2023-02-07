@@ -91,6 +91,11 @@ void WordSet::resize() {
 }
 
 void WordSet::insert(const std::string &s) {
+  // If the string is already in the arrays or the string is empty, return
+  if (contains(s) || s == "") {
+    return;
+  }
+
   // Create a temporary string to store the string that is being inserted
   std::string temp = s;
 
