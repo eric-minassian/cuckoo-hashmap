@@ -104,7 +104,7 @@ void WordSet::insert(const std::string &s) {
 
   // Continue inserting the string into the arrays until the eviction threshold
   // is reached or the string is inserted
-  while (evictions < evictionThreshold) {
+  while (evictions <= evictionThreshold) {
 
     // Get the key for the top array
     unsigned topKey = polynomialHashFunction(temp, BASE_H1, currentCapacity);
@@ -123,7 +123,7 @@ void WordSet::insert(const std::string &s) {
     }
 
     // If the eviction threshold is reached, break out of the loop to resize
-    if (evictions >= evictionThreshold) {
+    if (evictions > evictionThreshold) {
       break;
     }
 

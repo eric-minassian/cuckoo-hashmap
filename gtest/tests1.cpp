@@ -311,7 +311,7 @@ TEST(AdditionalPart1, WordList) {
   loadWordsIntoTable(words, in);
 
   EXPECT_EQ(words.getCount(), 38607);
-  EXPECT_EQ(words.getCapacity(), 411527);
+  EXPECT_EQ(words.getCapacity(), 205759);
 
   std::string line, word;
   std::stringstream ss;
