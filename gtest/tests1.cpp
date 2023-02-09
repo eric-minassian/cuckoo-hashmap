@@ -522,4 +522,55 @@ TEST(AdditionalPart2, EmptyToEmpty) {
   EXPECT_FALSE(validConversion(r, WORD_ONE, WORD_TWO, in2));
 }
 
+TEST(AdditionalPart2, SmogToPush) {
+  WordSet words(11);
+  std::string WORD_ONE = "smog";
+  std::string WORD_TWO = "push";
+  auto CORRECT_LENGTH = 8;
+
+  std::ifstream in("2019scrabble.txt");
+  loadWordsIntoTable(words, in);
+
+  std::vector<std::string> r = convert(WORD_ONE, WORD_TWO, words);
+
+  std::ifstream in2("2019scrabble.txt");
+
+  EXPECT_EQ(r.size(), CORRECT_LENGTH);
+  EXPECT_TRUE(validConversion(r, WORD_ONE, WORD_TWO, in2));
+}
+
+TEST(AdditionalPart2, ChargeToComedo) {
+  WordSet words(11);
+  std::string WORD_ONE = "charge";
+  std::string WORD_TWO = "comedo";
+  auto CORRECT_LENGTH = 20;
+
+  std::ifstream in("2019scrabble.txt");
+  loadWordsIntoTable(words, in);
+
+  std::vector<std::string> r = convert(WORD_ONE, WORD_TWO, words);
+
+  std::ifstream in2("2019scrabble.txt");
+
+  EXPECT_EQ(r.size(), CORRECT_LENGTH);
+  EXPECT_TRUE(validConversion(r, WORD_ONE, WORD_TWO, in2));
+}
+
+TEST(AdditionalPart2, AtlasesToCabaret) {
+  WordSet words(11);
+  std::string WORD_ONE = "atlases";
+  std::string WORD_TWO = "cabaret";
+  auto CORRECT_LENGTH = 33;
+
+  std::ifstream in("2019scrabble.txt");
+  loadWordsIntoTable(words, in);
+
+  std::vector<std::string> r = convert(WORD_ONE, WORD_TWO, words);
+
+  std::ifstream in2("2019scrabble.txt");
+
+  EXPECT_EQ(r.size(), CORRECT_LENGTH);
+  EXPECT_TRUE(validConversion(r, WORD_ONE, WORD_TWO, in2));
+}
+
 } // namespace
