@@ -220,6 +220,77 @@ TEST(AdditionalPart1, HashFunction6) {
   EXPECT_EQ(hv, shouldBe);
 }
 
+TEST(AdditionalPart1, HashFunction7) {
+  unsigned hv = polynomialHashFunction("abz", 5, 10);
+  unsigned shouldBe = 1;
+  EXPECT_EQ(hv, shouldBe);
+}
+
+TEST(AdditionalPart1, HashFunction8) {
+  unsigned hv = polynomialHashFunction("jnmvmvspxcafzffrgsbu", 64432, 15277);
+  unsigned shouldBe = 8234;
+  EXPECT_EQ(hv, shouldBe);
+}
+TEST(AdditionalPart1, HashFunction9) {
+  unsigned hv = polynomialHashFunction("egqxbojzirvnvzkzecxw", 56937, 27427);
+  unsigned shouldBe = 13384;
+  EXPECT_EQ(hv, shouldBe);
+}
+TEST(AdditionalPart1, HashFunction10) {
+  unsigned hv = polynomialHashFunction("kqomgaqsffeauudrnxil", 64167, 4133);
+  unsigned shouldBe = 3203;
+  EXPECT_EQ(hv, shouldBe);
+}
+TEST(AdditionalPart1, HashFunction11) {
+  unsigned hv = polynomialHashFunction("tcorviumpspuiswlfvms", 64565, 52453);
+  unsigned shouldBe = 41256;
+  EXPECT_EQ(hv, shouldBe);
+}
+TEST(AdditionalPart1, HashFunction12) {
+  unsigned hv = polynomialHashFunction("nzxapfruaohbotgqtbcx", 61348, 61211);
+  unsigned shouldBe = 37436;
+  EXPECT_EQ(hv, shouldBe);
+}
+TEST(AdditionalPart1, HashFunction13) {
+  unsigned hv = polynomialHashFunction(
+      "lmsdadfrxggwyhlgklkobqdpwuwdgijajuhrbhcbigltjfyhieviarmlujxtockiojitlzdp"
+      "nokqynpsmeqbrselzvpactmokhbahizjoxjzhzznpgqfcpdkfdtyazalkcffaozuqhkwnmay"
+      "rkctphnwsxjbjquxcfbbyiqzsxlkxbofqonpwhuigilllxdsfhkzzdlh",
+      51243, 65413);
+  unsigned shouldBe = 37101;
+  EXPECT_EQ(hv, shouldBe);
+}
+TEST(AdditionalPart1, HashFunction14) {
+  unsigned hv = polynomialHashFunction(
+      "lsyqciiqbpwtbcfmvrurzpzhwnywakylkxfszpwflpejbfychcjkwymfhpbgvxmdjxaukqoo"
+      "quyjhqpiaforvxhauydcymrkqlootqubaomssdbcvuvpxnxrahwnlobuiacwomhqcgdflwud"
+      "zjhaxedpjbcxuwwojmzamxnzhrmscsgqwvxqithzykllmybqqpcrlpfw",
+      19013, 977);
+  unsigned shouldBe = 582;
+  EXPECT_EQ(hv, shouldBe);
+}
+TEST(AdditionalPart1, HashFunction15) {
+  unsigned hv = polynomialHashFunction(
+      "afydgiorwdctoiwqwaixoxcsvzgjaeburzbqgpqgsildugnujocwngjpfrtopqjkmywtsivc"
+      "shfepftjtawzotwxzbpkvokpejaipuamewpyxsicdnsqbdrwnbcxvtinqmtxjxjdnicqyysu"
+      "nejawgzufwamlumkjczfhbuzxkanblqhxicmssdprhzzdemvcxwsatgy",
+      1492, 17509);
+  unsigned shouldBe = 10063;
+  EXPECT_EQ(hv, shouldBe);
+}
+
+TEST(AdditionalPart1, HashFunction16) {
+  unsigned hv = polynomialHashFunction("antidisestablishmentarianism", 41, 10);
+  unsigned shouldBe = 7;
+  EXPECT_EQ(hv, shouldBe);
+}
+
+TEST(AdditionalPart1, HashFunction17) {
+  unsigned hv = polynomialHashFunction("abc", 65535, 10);
+  unsigned shouldBe = 8;
+  EXPECT_EQ(hv, shouldBe);
+}
+
 TEST(AdditionalPart1, Insert1) {
   WordSet words(11);
   words.insert("abc");
@@ -232,6 +303,26 @@ TEST(AdditionalPart1, Insert2) {
   words.insert("def");
   EXPECT_TRUE(words.contains("abc"));
   EXPECT_TRUE(words.contains("def"));
+}
+
+TEST(AdditionalPart1, WordList) {
+  WordSet words(11);
+  std::ifstream in("words.txt");
+  loadWordsIntoTable(words, in);
+
+  EXPECT_EQ(words.getCount(), 38607);
+  EXPECT_EQ(words.getCapacity(), 411527);
+
+  std::string line, word;
+  std::stringstream ss;
+
+  while (getline(in, line)) {
+    ss.clear();
+    ss << line;
+    while (ss >> word) {
+      EXPECT_TRUE(words.contains(word));
+    }
+  }
 }
 
 // TEST(AdditionalPart1, InsertStressTest) {
