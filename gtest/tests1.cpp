@@ -390,6 +390,23 @@ TEST(AdditionalPart1, WordList) {
 //   }
 // }
 
+TEST(AdditionalPart2, ManToMan) {
+  WordSet words(11);
+  std::string WORD_ONE = "man";
+  std::string WORD_TWO = "man";
+  auto CORRECT_LENGTH = 1;
+
+  std::ifstream in("words.txt");
+  loadWordsIntoTable(words, in);
+
+  std::vector<std::string> r = convert(WORD_ONE, WORD_TWO, words);
+
+  std::ifstream in2("words.txt");
+
+  EXPECT_EQ(r.size(), CORRECT_LENGTH);
+  EXPECT_TRUE(validConversion(r, WORD_ONE, WORD_TWO, in2));
+}
+
 TEST(AdditionalPart2, ManToApe) {
   WordSet words(11);
   std::string WORD_ONE = "man";

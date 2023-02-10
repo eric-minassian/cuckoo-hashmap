@@ -115,15 +115,14 @@ void WordSet::insert(const std::string &s) {
       count++;
       return;
 
-      // If the top array is not empty, swap the string in the top array with
-      // the string being inserted and increment the number of evictions
-    } else {
+      // If the bottom array is not empty, check to see if a eviction would take
+      // it over the threshold If it would not, perform the eviction and
+      // increment the number of evictions If it would, break out of the loop
+      // and resize the arrays
+    } else if (evictions < evictionThreshold) {
       std::swap(topArray[topKey], temp);
       evictions++;
-    }
-
-    // If the eviction threshold is reached, break out of the loop to resize
-    if (evictions > evictionThreshold) {
+    } else {
       break;
     }
 
@@ -136,11 +135,15 @@ void WordSet::insert(const std::string &s) {
       count++;
       return;
 
-      // If the bottom array is not empty, swap the string in the bottom array
-      // with the string being inserted and increment the number of evictions
-    } else {
+      // If the bottom array is not empty, check to see if a eviction would take
+      // it over the threshold If it would not, perform the eviction and
+      // increment the number of evictions If it would, break out of the loop
+      // and resize the arrays
+    } else if (evictions < evictionThreshold) {
       std::swap(bottomArray[bottomKey], temp);
       evictions++;
+    } else {
+      break;
     }
   }
 
