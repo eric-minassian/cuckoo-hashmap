@@ -291,6 +291,18 @@ TEST(AdditionalPart1, HashFunction17) {
   EXPECT_EQ(hv, shouldBe);
 }
 
+TEST(AdditionalPart1, HashFunction18) {
+  unsigned hv = polynomialHashFunction("antidisestablishmentarianism", 41, 10);
+  unsigned shouldBe = 7;
+  EXPECT_EQ(hv, shouldBe);
+}
+
+TEST(AdditionalPart1, HashFunction19) {
+  unsigned hv = polynomialHashFunction("abzcdefqqxm", 5, 10);
+  unsigned shouldBe = 8;
+  EXPECT_EQ(hv, shouldBe);
+}
+
 TEST(AdditionalPart1, Insert1) {
   WordSet words(11);
   words.insert("abc");
